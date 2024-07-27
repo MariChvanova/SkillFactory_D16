@@ -1,10 +1,12 @@
-from django.urls import path, include
-from .views import AccountProfile, UpdateProfile, auth_code
-
+from django.urls import path
+from django.shortcuts import redirect
+from .views import SignUp
 
 urlpatterns = [
-  path('profile', AccountProfile.as_view(), name='account_profile'),
-  path('edit', UpdateProfile.as_view(), name='account_edit'),
-  path('auth_code', auth_code, name='auth_code'),
-  path('', include('allauth.urls')),
+
+    path('signup/', SignUp.as_view(), name='signup'),
+    path('', lambda request: redirect('signup', permanent=False)),
+
 ]
+
+
